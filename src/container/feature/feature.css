@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;500;600;700&display=swap');
+
+:root {
+    --font-family: 'Manrope', sans-serif;
+  
+    --gradient-text: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867);
+    --gradient-bar: linear-gradient(103.22deg, #AE67FA -13.86%, #F49865);
+   
+    --color-bg: #040C18;
+    --color-footer:#031B34;
+    --color-text: #84AFDD;
+    --color-subtext: #FF8A71;
+}
+.gpt3__features {
+    margin-left: 5rem;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.gpt3__features-heading{
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: left;
+    margin-right: 5rem;
+}
+
+.gradien__text{
+    background: linear-gradient(90deg, #AE67FA 1.84%, #F49867 102.67%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #FFF;
+    font-family: var(--font-family);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 45px; /* 132.353% */
+}
+
+.gpt3__features-heading p {
+    color: var(--color-subtext);
+    font-family: var(--font-family);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px; /* 187.5% */
+    margin-top: 2rem;
+}
+
+.gpt3__features-container{
+    margin-right: 17.5rem;
+    flex: 1.5;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media screen and (max-width:990px) {
+    .gpt3__features {
+       flex-direction: column;
+       margin: 0 15px 0 20px;
+    }
+
+    .gpt3__features-heading {
+        margin: 0 0 1rem 0;
+    }
+
+    .gradien__text{
+        font-size: 25px;
+        line-height: 35px;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .gpt3__features {
+        margin-left: 10px;
+    }
+
+    .gpt3__features-container{
+        margin-right: 25px;
+    }
+
+    .gradien__text{
+        font-size: 15px;
+        line-height: 28px;
+    }
+}
