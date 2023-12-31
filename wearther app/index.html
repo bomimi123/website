@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Wearther App </title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" Accurate Weather Data: Get real-time, hyper-local weather updates based on your exact location. Our app utilizes advanced forecasting technology to provide you with the most precise and up-to-date weather information.">
+    <meta name="keywords" content="Download WeatherHub today and make every day a breeze, rain, or shine. It's time to take control of your weather experience!">
+  
+    <!-- ========== BOXICONS ========== -->
+     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/dist/boxicons.js"> -->
+     <!-- ========== CSS ========== -->
+     <link rel="stylesheet" href="./css/style.css">
+     <!-- ========== FONT-FAMILY ========== -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Enter the city "  class="text" spellcheck="false">
+            <button><img src="./images/search.png" alt=""></button>
+        </div>
+
+        <div class="wearther">
+            <img src="images/rain.png" alt="images" class="wearther-icon">
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">Hà Nội</h2> 
+            <div class="details">
+                <div class="col">
+                    <img src="images/humidity.png" alt="images" >
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <img src="images/wind.png" alt="images" >
+                    <div>
+                        <p class="humidity">10km/h</p>
+                        <p>Wind speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script >
+       const apikey ="b098a6398a5f83d5d05849597c3767cf";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+        
+        const searchBox = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button");
+        const weartherIcon = document.querySelector(".wearther-icon");
+
+        async function checkWearther(city) {
+            const respone = await fetch(apiUrl + city + `&appid=${apikey}`);
+            var data = await respone.json();
+ 
+            console.log(data);
+
+            document.querySelector(".city").innerHTML = data.name;
+            document.querySelector(".temp").innerHTML = Math.round(data.main.temp)  + "°c";
+            document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+            document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+            
+            if (data.wearther[0].main == "Clounds") {
+                weartherIcon.src = "images/clounds.png";
+            } 
+            else if (data.wearther[0].main == "Clear") {
+                weartherIcon.src = "images/clear.png";
+            } 
+            else if (data.wearther[0].main == "Rain") {
+                weartherIcon.src = "images/rain.png";
+            } 
+            else if (data.wearther[0].main == "Dirzzle") {
+                weartherIcon.src = "images/dirzzle.png";
+            } 
+            else if (data.wearther[0].main == "Mist") {
+                weartherIcon.src = "images/dirzzle.png";
+            } 
+
+
+        }
+
+
+        searchBtn.addEventListener("click", () => {
+            checkWearther(searchBox.value);
+        })
+
+        checkWearther()
+    </script>
+</body>
+</html>
